@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<h1>Wynik obliczeń</h1>
+<p th:object="${point}">
+Wartość udulacji dla wprowadzonej:<br>
+szerokości geograficznej: <span th:text="*{x}"></span><br>
+długości geograficznej: <span th:text="*{y}"></span><br>
+wyznaczona metodą <span th:text="*{operation}"></span><br>
+<h2>Wynosi:<br> <span th:text="${result}"></span></h2>
+<p>
+    <a href="/">Powrót</a>
+</p>
+</body>
+</html>

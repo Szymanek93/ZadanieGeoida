@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wprowadź współrzędne geograficzne w stopaniach dziesiętnych</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<h1>Oblicz udulacje</h1>
+<form action="/calculate" method="post">
+    <p> Szerokośc geograficzna:
+        <input type="text" class="form-control" placeholder="49.2379513" name="x"></p>
+    <p> Długość geograficzna:
+        <input type="text" class="form-control" placeholder="22.6512341" name="y" ></p>
+    <p>Metoda interpolacji</p>
+    <select name="operation">
+        <option selected = "true">dwuliniowa</option>
+        <option>dwusześcienna</option>
+    </select>
+    <br>
+    <p><input type="submit" value="Oblicz udulację" class="btn btn-success" ></p>
+<!--    <p><input type="submit" value="Metoda dwusześcienna"></p>-->
+</form>
+</body>
+</html>
