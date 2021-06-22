@@ -30,7 +30,6 @@ public class PointProvider {
             return true;
         } catch (NumberFormatException e) {
             System.out.println("we wskzazanym pkt wartośc geoidy wynosi N");
-            //TODO zmień na ang
             return false;
         }
     }

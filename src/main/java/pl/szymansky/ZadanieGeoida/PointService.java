@@ -10,46 +10,15 @@ import java.io.IOException;
 @Service
 public class PointService {
 
-//    //Wprowadzanie szerokości geograficznej szukanego punktu
-//    public double insertPointX() throws IOException {
-//        double rangeXMax = (PointProvider.readRow(3));
-//        double rangeXMin = (PointProvider.readRow(1));
-//        Scanner pointX = new Scanner(System.in);
-//        System.out.println("Wprowadź szerokość geograficzną");
-//        double X = pointX.nextDouble();
-//        if (X >= rangeXMin && X <= rangeXMax) {
-//            return X;
-//        } else {
-//            System.out.println("Podana wartość szerokości geograficznej jest poza zakresem, wprowadź poprawną wartość:");
-//            return insertPointX();
-//        }
-//    }
-//
-//    // Wprowadzanie długości geograficznej szukanego punktu
-//    public double insertPointY() throws IOException {
-//        double rangeYMax = (PointProvider.readRow(4));
-//        double rangeYMin = (PointProvider.readRow(2));
-//        Scanner pointY = new Scanner(System.in);
-//        System.out.println("Wprowadź długość geograficzną");
-//        double Y = pointY.nextDouble();
-//        if (Y >= rangeYMin && Y <= rangeYMax) {
-//            return Y;
-//        } else {
-//            System.out.println("Podana wartość długości geograficznej jest poza zakresem, wprowadź poprawną wartość:");
-//            return insertPointY();
-//        }
-//    }
-
     //dczytywanie skoku siatki grid
     public double findStep() throws IOException {
         return ((PointProvider.readRow(3) - PointProvider.readRow(1)) / (PointProvider.readRow(6)));
     }
-    // wartość wspolrzednych wezlów po uwzglednieniu osi X
-
     public double roundNum(double a) {
         double number = Math.round(a);
         return (number / 100);
     }
+
     public double searchXNodeDown(double pointX) throws IOException {
         double rangeXMin = (PointProvider.readRow(1));
         double gridStep = findStep();
@@ -123,7 +92,7 @@ public class PointService {
     }
 
     public double biCubicInterpolation(double pointX, double pointY) throws IOException {
-        double valueBicubicIntepolation;
+        double valuebicubicintepolation;
         String textX = Double.toString(Math.abs(pointX));
         int integerPlacesX = textX.indexOf('.');
         int decimalPlacesX = textX.length() - integerPlacesX - 1;
@@ -132,7 +101,7 @@ public class PointService {
         int integerPlacesY = textY.indexOf('.');
         int decimalPlacesY = textY.length() - integerPlacesY - 1;
         if (decimalPlacesX == 2 && decimalPlacesY == 2) {
-            valueBicubicIntepolation = searchValueNode(searchXNodeDown(pointX), searchYNodeDown(pointY));
+            valuebicubicintepolation = searchValueNode(searchXNodeDown(pointX), searchYNodeDown(pointY));
 
         } else {
             double valueNode1 = searchValueNode((searchXNodeDownBiCubic(pointX, (0))), searchYNodeDownBiCubic(pointY, (0)));
@@ -152,12 +121,12 @@ public class PointService {
             double valueNode15 = searchValueNode((searchXNodeDownBiCubic(pointX, (-0.01))), searchYNodeDownBiCubic(pointY, (0.01)));
             double valueNode16 = searchValueNode((searchXNodeDownBiCubic(pointX, (-0.01))), searchYNodeDownBiCubic(pointY, (0.00)));
             System.out.println("B");
-            valueBicubicIntepolation = (valueNode1 + valueNode2 + valueNode3 + valueNode4 + valueNode5 +
+            valuebicubicintepolation = (valueNode1 + valueNode2 + valueNode3 + valueNode4 + valueNode5 +
                     valueNode6 + valueNode7 + valueNode8 + valueNode9 + valueNode10 + valueNode11 + valueNode12 +
                     valueNode13 + valueNode14 + valueNode15 + valueNode16) / 16;
 
         }
-        return valueBicubicIntepolation;
+        return valuebicubicintepolation;
     }
 
     public double calculate(Point form) throws IOException {
